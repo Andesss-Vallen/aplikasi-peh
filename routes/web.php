@@ -1,12 +1,9 @@
 <?php
 
-use App\Http\Controllers\CsPehPotretController;
-use App\Http\Controllers\InfoController;
-use App\Http\Controllers\InfoJadwalController;
-use App\Http\Controllers\JadwalPehpotretController;
-use App\Http\Controllers\KategoriPaketController;
-use App\Http\Controllers\MonitoringController;
-use App\Http\Controllers\PaketPehpotretController;
+use App\Http\Controllers\CustomerServiceController;
+use App\Http\Controllers\DetailJadwalController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PaketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TimFotoController;
 use App\Http\Controllers\TimVideoController;
@@ -51,6 +48,12 @@ Route::get('utama', function () {
 
 // ==========================Route Tabel Utama==========================
 
+Route::resource('customerservice', CustomerServiceController::class);
+Route::resource('detailjadwal', DetailJadwalController::class);
+Route::resource('jadwal', JadwalController::class);
+Route::resource('paket', PaketController::class);
+Route::resource('timfoto', TimFotoController::class);
+Route::resource('timvideo', TimVideoController::class);
 
 Route::get('jadwal', function(){
     return view('jadwal');
