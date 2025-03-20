@@ -42,9 +42,9 @@ Route::get('superuser', function () {
     return '<h1>Helo Pak Tiyo</h1>';
 })->middleware(['auth', 'verified', 'role:superuser|freelance', 'permission:lihat-datautama']);
 
-Route::get('utama', function () {
-    return view('welcome');
-})->middleware(['auth', 'verified', 'permission:lihat-datautama']);
+// Route::get('utama', function () {
+//     return view('welcome');
+// })->middleware(['auth', 'verified', 'permission:lihat-datautama']);
 
 // ==========================Route Tabel Utama==========================
 

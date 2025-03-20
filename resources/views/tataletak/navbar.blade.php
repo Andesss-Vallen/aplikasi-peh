@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +64,8 @@
         .menu {
             display: none;
             position: absolute;
-            top: 50px; /* Lebih dekat ke tombol */
+            top: 50px;
+            /* Lebih dekat ke tombol */
             right: 20px;
             background: white;
             border: 1px solid #ddd;
@@ -116,17 +117,16 @@
             @if (auth()->user()->hasRole('superuser') || auth()->user()->hasRole('admin'))
             <div class="icon" onclick="toggleMenu(event)">
                 <span class="material-symbols-outlined">menu</span>
-            </div>            
+            </div>
             <div class="menu" id="menu">
                 @if (auth()->user()->hasRole('superuser'))
                 <a href="/timfoto">Tim Foto</a>
                 <a href="/timvideo">Tim Video</a>
-                <a href="/cspehpotret">Tim CS</a>
-                <a href="/kategoripaket">Kategori Paket</a>
-                <a href="/paketpehpotret">Paket</a>
+                <a href="/customerservice">Tim CS</a>
+                <a href="/paket">Paket</a>
+                <a href="/detailjadwal">Info Jadwal</a>
+                <a href="/jadwal">Jadwal Job</a>
                 @endif
-                <a href="/info">Info Jadwal</a>
-                <a href="/jadwalpehpotret">Jadwal Job</a>
             </div>
             @endif
         </div>
@@ -150,4 +150,5 @@
         });
     </script>
 </body>
+
 </html>
