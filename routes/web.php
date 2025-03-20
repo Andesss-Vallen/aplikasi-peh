@@ -55,8 +55,5 @@ Route::resource('paket', PaketController::class);
 Route::resource('timfoto', TimFotoController::class);
 Route::resource('timvideo', TimVideoController::class);
 
-Route::get('jadwal', function(){
-    return view('jadwal');
-});
 
 require __DIR__ . '/auth.php';

@@ -1,30 +1,36 @@
 @extends('tataletak.app')
 
-@section('title', 'Edit Customer Service')
-
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Edit Customer Service</h2>
-                <form action="{{ route('customerservice.update', $cs->id) }}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" value="{{ $cs->nama }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nomor_hp">Nomor HP</label>
-                        <input type="text" class="form-control" id="nomor_hp" name="nomor_hp" value="{{ $cs->nomor_hp }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <input type="text" class="form-control" id="status" name="status" value="{{ $cs->status }}" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </form>
+    <style>
+        .card {
+            background: #867554;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+    </style>
+    <div class="card">
+        <h2>Edit Data Customer Service</h2>
+        <form action="{{ route('customerservice.update', $cs->id) }}" method="post">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ $cs->nama }}" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="nomor_hp">Nomor HP</label>
+                <input type="text" class="form-control" id="nomor_hp" name="nomor_hp" value="{{ $cs->nomor_hp }}" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status" required>
+                    <option value="0" {{ $cs->status == 0 ? 'selected' : '' }}>Training</option>
+                    <option value="1" {{ $cs->status == 1 ? 'selected' : '' }}>Tetap</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="{{ route('customerservice.index') }}" class="btn btn-secondary">Kembali</a>
+        </form>
     </div>
 @endsection

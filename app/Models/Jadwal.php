@@ -38,6 +38,6 @@ class Jadwal extends Model
 
     public function detailJadwal()
     {
-        return $this->hasMany(DetailJadwal::class, 'id_jadwal');
+        return $this->hasOne(DetailJadwal::class, 'id_jadwal');
     }
 }
