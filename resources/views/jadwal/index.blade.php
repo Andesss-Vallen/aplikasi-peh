@@ -205,6 +205,8 @@
             document.getElementById('sortDesc').addEventListener('click', function() {
                 sortTable('desc');
             });
+
+            // ya
         });
     </script>
 @endsection
