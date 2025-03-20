@@ -28,9 +28,12 @@ CREATE TABLE IF NOT EXISTS `customer_services` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.customer_services: ~0 rows (approximately)
+REPLACE INTO `customer_services` (`id`, `nama`, `nomor_hp`, `status`, `created_at`, `updated_at`) VALUES
+	(1, 'Fadilla Gita Juliana', '0877564332178', 0, NULL, NULL),
+	(2, 'Anissa Dwi Oktaviaputri Raharmaja', '086512386539', 0, NULL, NULL);
 
 -- Dumping structure for table pehstudio.detail_jadwals
 CREATE TABLE IF NOT EXISTS `detail_jadwals` (
@@ -90,9 +93,12 @@ CREATE TABLE IF NOT EXISTS `jadwals` (
   CONSTRAINT `jadwals_id_paket_foreign` FOREIGN KEY (`id_paket`) REFERENCES `pakets` (`id`),
   CONSTRAINT `jadwals_id_tfoto_foreign` FOREIGN KEY (`id_tfoto`) REFERENCES `tim_fotos` (`id`),
   CONSTRAINT `jadwals_id_tvideo_foreign` FOREIGN KEY (`id_tvideo`) REFERENCES `tim_videos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table pehstudio.jadwals: ~0 rows (approximately)
+-- Dumping data for table pehstudio.jadwals: ~1 rows (approximately)
+REPLACE INTO `jadwals` (`id`, `client`, `brand`, `tanggal`, `bvia_foto`, `bvia_video`, `keterangan`, `pakaian`, `id_cs`, `id_tfoto`, `id_tvideo`, `id_paket`, `created_at`, `updated_at`) VALUES
+	(1, 'Dewi & Sukarman', 'Wuling', '2025-03-29', 'Tiyo', 'Tiyo', 'Request Music', 'Hitam', 1, 1, 1, 1, NULL, NULL),
+	(2, 'Dewi & Sukarman', 'Wuling', '2025-03-21', 'Tiyo', 'Tiyo', 'Request Music', 'Hitam', 2, 2, 1, 1, NULL, NULL);
 
 -- Dumping structure for table pehstudio.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -100,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.migrations: ~0 rows (approximately)
 REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -114,7 +120,8 @@ REPLACE INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(8, '2025_03_18_070222_create_customer_services_table', 1),
 	(9, '2025_03_18_070222_create_jadwals_table', 2),
 	(10, '2025_03_18_070223_create_detail_jadwals_table', 3),
-	(11, '2025_03_18_071201_create_permission_tables', 3);
+	(11, '2025_03_18_071201_create_permission_tables', 3),
+	(12, '2025_03_12_024407_create_cs_pehpotrets_table', 4);
 
 -- Dumping structure for table pehstudio.model_has_permissions
 CREATE TABLE IF NOT EXISTS `model_has_permissions` (
@@ -139,6 +146,10 @@ CREATE TABLE IF NOT EXISTS `model_has_roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.model_has_roles: ~0 rows (approximately)
+REPLACE INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+	(1, 'App\\Models\\User', 1),
+	(2, 'App\\Models\\User', 2),
+	(3, 'App\\Models\\User', 3);
 
 -- Dumping structure for table pehstudio.pakets
 CREATE TABLE IF NOT EXISTS `pakets` (
@@ -147,9 +158,11 @@ CREATE TABLE IF NOT EXISTS `pakets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.pakets: ~0 rows (approximately)
+REPLACE INTO `pakets` (`id`, `nama`, `created_at`, `updated_at`) VALUES
+	(1, 'Video & Photo Wedding GOLD', NULL, NULL);
 
 -- Dumping structure for table pehstudio.password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
@@ -170,9 +183,18 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.permissions: ~0 rows (approximately)
+REPLACE INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+	(1, 'tambah-user', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(2, 'edit-user', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(3, 'hapus-user', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(4, 'lihat-user', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(5, 'tambah-datautama', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(6, 'edit-datautama', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(7, 'hapus-datautama', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(8, 'lihat-datautama', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11');
 
 -- Dumping structure for table pehstudio.personal_access_tokens
 CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
@@ -202,9 +224,13 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.roles: ~0 rows (approximately)
+REPLACE INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+	(1, 'admin', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(2, 'superuser', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11'),
+	(3, 'freelance', 'web', '2025-03-18 20:58:11', '2025-03-18 20:58:11');
 
 -- Dumping structure for table pehstudio.role_has_permissions
 CREATE TABLE IF NOT EXISTS `role_has_permissions` (
@@ -217,6 +243,20 @@ CREATE TABLE IF NOT EXISTS `role_has_permissions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.role_has_permissions: ~0 rows (approximately)
+REPLACE INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+	(5, 1),
+	(6, 1),
+	(7, 1),
+	(8, 1),
+	(1, 2),
+	(2, 2),
+	(3, 2),
+	(4, 2),
+	(5, 2),
+	(6, 2),
+	(7, 2),
+	(8, 2),
+	(8, 3);
 
 -- Dumping structure for table pehstudio.tim_fotos
 CREATE TABLE IF NOT EXISTS `tim_fotos` (
@@ -227,9 +267,12 @@ CREATE TABLE IF NOT EXISTS `tim_fotos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.tim_fotos: ~0 rows (approximately)
+REPLACE INTO `tim_fotos` (`id`, `nama`, `nomor_hp`, `status`, `created_at`, `updated_at`) VALUES
+	(1, 'Wildun Mahardika', '085932145876', 1, NULL, NULL),
+	(2, 'Dhodit Rengga Tisna', '0877564332179', 1, NULL, NULL);
 
 -- Dumping structure for table pehstudio.tim_videos
 CREATE TABLE IF NOT EXISTS `tim_videos` (
@@ -240,15 +283,18 @@ CREATE TABLE IF NOT EXISTS `tim_videos` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.tim_videos: ~0 rows (approximately)
+REPLACE INTO `tim_videos` (`id`, `nama`, `nomor_hp`, `status`, `created_at`, `updated_at`) VALUES
+	(1, 'Redo Setiawan', '0877342176453', 1, NULL, NULL);
 
 -- Dumping structure for table pehstudio.users
 CREATE TABLE IF NOT EXISTS `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -256,9 +302,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table pehstudio.users: ~0 rows (approximately)
+REPLACE INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+	(1, 'admin', 'adminpeh65', 'rinajhe54@gmail.com', NULL, '$2y$12$HbTTap33z2YCt0Li0MNl1eFzofxLy/3Z1EiBWbWZCk3vSs99AEyKK', NULL, '2025-03-18 20:58:23', '2025-03-18 20:58:23'),
+	(2, 'superuser', 'tiyomarte45', 'raehanandes@gmail.com', NULL, '$2y$12$XlE2eNDXT7t6KN29YMb7x.J65NyYGGCfc/ev7BFjqHZgIoYfPEbDm', '7ZnldL60IdJEomBQlrCiZoTlPnz17j7K7nljlWgkhnS4E5FYWBwELKFPQKEe', '2025-03-18 20:58:23', '2025-03-18 20:58:23'),
+	(3, 'freelance', 'freelancepehpotret', 'wasisto513@gmail.com', NULL, '$2y$12$jzFNAHs5iiJY3YONLh1Aw.I3mI3IPii1qAMbWQJtSsjXGuUwyWOvG', NULL, '2025-03-18 20:58:24', '2025-03-18 20:58:24');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
