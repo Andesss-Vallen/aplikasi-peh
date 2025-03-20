@@ -111,13 +111,14 @@
                     @foreach ($dj as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->jadwal->nama }}</td>
+                            <td>{{ $item->jadwal->client }}</td>
                             <td>{{ $item->jadwal->paket->nama }}</td>
                             <td>{{ $item->rundown }}</td>
                             <td>{{ $item->album }}</td>
                             <td>{{ $item->medsos }}</td>
                             <td>{{ $item->jadwal->timFoto->nama }}</td>
                             <td>{{ $item->jadwal->timVideo->nama }}</td>
+                            <td>{{ $item->jadwal->pakaian }}</td>
                             <td>{{ $item->jam_ready }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td class="action">
