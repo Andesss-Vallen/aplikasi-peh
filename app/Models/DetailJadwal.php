@@ -10,7 +10,15 @@ class DetailJadwal extends Model
     use HasFactory;
 
     protected $table = 'detail_jadwals';
-    protected $fillable = ['album', 'medsos', 'jam_ready', 'rundown', 'keterangan', 'id_jadwal'];
+    protected $fillable = [
+        'album',
+        'medsos',
+        'jam_ready',
+        'rundown_text',
+        'rundown_pdf',
+        'keterangan',
+        'id_jadwal'
+    ];
     public $timestamps = false;
 
     public function jadwal()

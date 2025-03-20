@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TimFotoController;
 use App\Http\Controllers\TimVideoController;
 use Illuminate\Support\Facades\Route;
+use App\Models\DetailJadwal;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +56,9 @@ Route::resource('paket', PaketController::class);
 Route::resource('timfoto', TimFotoController::class);
 Route::resource('timvideo', TimVideoController::class);
 
+Route::get('/utama', function () {
+    $dj = DetailJadwal::all(); // Ambil semua data dari tabel info_jadwal
+    return view('utama/index', compact('dj')); // Kirim ke Blade
+});
 
 require __DIR__ . '/auth.php';

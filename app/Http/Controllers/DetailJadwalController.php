@@ -32,16 +32,34 @@ class DetailJadwalController extends Controller
      */
     public function store(Request $request)
     {
-        $dj = new DetailJadwal();
-        $dj->album = $request['album'];
-        $dj->medsos = $request['medsos'];
-        $dj->jam_ready = $request['jam_ready'];
-        $dj->rundown = $request['rundown'];
-        $dj->keterangan = $request['keterangan'];
-        $dj->id_jadwal = $request['id_jadwal'];
-        $dj->save();
+        $request->validate([
+            'id_jadwal' => 'required',
+            'rundown_text' => 'nullable|string',
+            'rundown_pdf' => 'nullable|file|mimes:pdf|max:2048', // Maksimal 2MB
+            'album' => 'nullable|string',
+            'medsos' => 'nullable|string',
+            'jam_ready' => 'nullable|string',
+            'keterangan' => 'nullable|string',
+        ]);
 
-        return redirect('detailjadwal');
+        // Simpan file PDF jika ada
+        $rundown_pdf = null;
+        if ($request->hasFile('rundown_pdf')) {
+            $rundown_pdf = $request->file('rundown_pdf')->store('rundown', 'public');
+        }
+
+        // Simpan data ke database
+        DetailJadwal::create([
+            'id_jadwal' => $request->id_jadwal,
+            'rundown_text' => $request->rundown_text,
+            'rundown_pdf' => $rundown_pdf,
+            'album' => $request->album,
+            'medsos' => $request->medsos,
+            'jam_ready' => $request->jam_ready,
+            'keterangan' => $request->keterangan,
+        ]);
+
+        return redirect()->route('detailjadwal.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
