@@ -51,7 +51,7 @@
             </div>
             <div class="form-group">
                 <label for="id_tfoto">Tim Foto</label>
-                <select class="form-control" id="id_tfoto" name="id_tfoto" >
+                <select class="form-control" multiple id="id_tfoto" name="id_tfoto" >
                     @foreach ($tf as $item)
                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach
@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="id_tvideo">Tim Video</label>
-                <select class="form-control" id="id_tvideo" name="id_tvideo" >
+                <select class="form-control" multiple id="id_tvideo" name="id_tvideo" >
                     @foreach ($tv as $item)
                         <option value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach

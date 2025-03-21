@@ -12,7 +12,7 @@ class Jadwal extends Model
     protected $table = 'jadwals';
     protected $fillable = [
         'client', 'brand', 'tanggal', 'bvia_foto', 'bvia_video', 
-        'keterangan', 'pakaian', 'id_cs', 'id_tfoto', 'id_tvideo', 'id_paket'
+        'keterangan', 'pakaian', 'id_cs', 'timfoto_id', 'timvideo_id', 'id_paket'
     ];
     public $timestamps = false;
 
@@ -23,12 +23,11 @@ class Jadwal extends Model
 
     public function timFoto()
     {
-        return $this->belongsTo(TimFoto::class, 'id_tfoto');
+        return $this->belongsToMany(TimFoto::class, 'jadwal_timfoto', 'jadwal_id', 'timfoto_id');
     }
-
     public function timVideo()
     {
-        return $this->belongsTo(TimVideo::class, 'id_tvideo');
+        return $this->belongsToMany(TimVideo::class, 'jadwal_timvideo', 'jadwal_id', 'timvideo_id');
     }
 
     public function paket()
