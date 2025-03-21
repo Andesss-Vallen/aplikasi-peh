@@ -16,41 +16,41 @@
             @method('PUT')
             <div class="form-group">
                 <label for="client">Client</label>
-                <input type="text" class="form-control" id="client" name="client" value="{{ $j->client }}" required>
+                <input type="text" class="form-control" id="client" name="client" value="{{ $j->client }}" >
             </div>
             <div class="form-group">
                 <label for="brand">Brand</label>
                 <input type="text" class="form-control" id="brand" name="brand" value="{{ $j->brand }}"
-                    required>
+                    >
             </div>
             <div class="form-group">
                 <label for="tanggal">Tanggal</label>
                 <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ $j->tanggal }}"
-                    required>
+                    >
             </div>
             <div class="form-group">
                 <label for="bvia_foto">Bvia Foto</label>
                 <input type="text" class="form-control" id="bvia_foto" name="bvia_foto" value="{{ $j->bvia_foto }}"
-                    required>
+                    >
             </div>
             <div class="form-group">
                 <label for="bvia_video">Bvia Video</label>
                 <input type="text" class="form-control" id="bvia_video" name="bvia_video" value="{{ $j->bvia_video }}"
-                    required>
+                    >
             </div>
             <div class="form-group">
                 <label for="keterangan">Keterangan</label>
                 <input type="text" class="form-control" id="keterangan" name="keterangan" value="{{ $j->keterangan }}"
-                    required>
+                    >
             </div>
             <div class="form-group">
                 <label for="pakaian">Pakaian</label>
                 <input type="text" class="form-control" id="pakaian" name="pakaian" value="{{ $j->pakaian }}"
-                    required>
+                    >
             </div>
             <div class="form-group">
                 <label for="id_cs">CS</label>
-                <select class="form-control" id="id_cs" name="id_cs" required>
+                <select class="form-control" id="id_cs" name="id_cs" >
                     @foreach ($cs as $item)
                         <option value="{{ $item->id }}" {{ $j->id_cs == $item->id ? 'selected' : '' }}>
                             {{ $item->nama }}</option>
@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="id_tfoto">Tim Foto</label>
-                <select class="form-control" id="id_tfoto" name="id_tfoto[]" multiple required>
+                <select class="form-control" id="id_tfoto" name="id_tfoto[]" multiple >
                     @foreach ($tf as $item)
                         <option value="{{ $item->id }}"
                             {{ isset($j->id_tfoto) && is_iterable($j->id_tfoto) && collect($j->id_tfoto)->pluck('id')->contains($item->id) ? 'selected' : '' }}>
@@ -71,7 +71,7 @@
 
             <div class="form-group">
                 <label for="id_tvideo">Tim Video</label>
-                <select class="form-control" id="id_tvideo" name="id_tvideo[]" multiple required>
+                <select class="form-control" id="id_tvideo" name="id_tvideo[]" multiple >
                     @foreach ($tv as $item)
                         <option value="{{ $item->id }}"
                             {{ isset($j->id_tvideo) && is_iterable($j->id_tvideo) && collect($j->id_tvideo)->pluck('id')->contains($item->id) ? 'selected' : '' }}>
@@ -83,7 +83,7 @@
 
             <div class="form-group">
                 <label for="id_paket">Paket</label>
-                <select class="form-control" id="id_paket" name="id_paket" required>
+                <select class="form-control" id="id_paket" name="id_paket" >
                     @foreach ($p as $item)
                         <option value="{{ $item->id }}" {{ $j->id_paket == $item->id ? 'selected' : '' }}>
                             {{ $item->nama }}</option>

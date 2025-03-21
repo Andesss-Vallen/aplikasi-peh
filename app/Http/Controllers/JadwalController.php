@@ -47,8 +47,6 @@ class JadwalController extends Controller
         $j->keterangan = $request['keterangan'];
         $j->pakaian = $request['pakaian'];
         $j->id_cs = $request['id_cs'];
-        $j->id_tfoto = $request['id_tfoto'];
-        $j->id_tvideo = $request['id_tvideo'];
         $j->id_paket = $request['id_paket'];
         $j->save();
 
@@ -64,6 +62,7 @@ class JadwalController extends Controller
         } elseif (!empty($request->id_tvideo)) {
             $j->timVideo()->sync([$request->id_tvideo]);
         }
+
         return redirect('jadwal');
     }
 

@@ -51,17 +51,24 @@
             </div>
             <div class="form-group">
                 <label for="id_tfoto">Tim Foto</label>
-                <select class="form-control" multiple id="id_tfoto" name="id_tfoto" >
+                <select class="form-control" id="id_tfoto" name="id_tfoto[]" multiple >
                     @foreach ($tf as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        <option value="{{ $item->id }}"
+                            {{ isset($j->id_tfoto) && is_iterable($j->id_tfoto) && collect($j->id_tfoto)->pluck('id')->contains($item->id) ? 'selected' : '' }}>
+                            {{ $item->nama }}
+                        </option>
                     @endforeach
                 </select>
             </div>
+
             <div class="form-group">
                 <label for="id_tvideo">Tim Video</label>
-                <select class="form-control" multiple id="id_tvideo" name="id_tvideo" >
+                <select class="form-control" id="id_tvideo" name="id_tvideo[]" multiple >
                     @foreach ($tv as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        <option value="{{ $item->id }}"
+                            {{ isset($j->id_tvideo) && is_iterable($j->id_tvideo) && collect($j->id_tvideo)->pluck('id')->contains($item->id) ? 'selected' : '' }}>
+                            {{ $item->nama }}
+                        </option>
                     @endforeach
                 </select>
             </div>
