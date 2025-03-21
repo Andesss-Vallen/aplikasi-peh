@@ -157,24 +157,53 @@
                             <td>{{ $item->bvia_video }}</td>
                             <td>{{ $item->keterangan }}</td>
                             <td>{{ $item->pakaian }}</td>
-                            <td>{{ $item->customerService->nama }}</td>
-                            <td>{{ $item->timFoto->nama }}</td>
-                            <td>{{ $item->timVideo->nama }}</td>
-                            <td>{{ $item->paket->nama }}</td>
+                            <td>{{ optional($item->customerService)->nama ?? '-' }}</td>
+
+                            <!-- Menampilkan Tim Foto (Many-to-Many) -->
+                            <td>
+                                @if ($item->timFoto->isNotEmpty())
+                                    <ul>
+                                        @foreach ($item->timFoto as $timfoto)
+                                            <li>{{ $timfoto->nama }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
+
+                            <!-- Menampilkan Tim Video (Many-to-Many) -->
+                            <td>
+                                @if ($item->timVideo->isNotEmpty())
+                                    <ul>
+                                        @foreach ($item->timVideo as $timvideo)
+                                            <li>{{ $timvideo->nama }}</li>
+                                        @endforeach
+                                    </ul>
+                                @else
+                                    <span class="text-muted">-</span>
+                                @endif
+                            </td>
+
+                            <td>{{ optional($item->paket)->nama ?? '-' }}</td>
                             <td class="action">
-                                <a href="{{ route('jadwal.edit', $item->id) }}" class="btn btn-warning btn-sm"><i
-                                        class="fas fa-edit"></i></a>
+                                <a href="{{ route('jadwal.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
                                 <form action="{{ route('jadwal.destroy', $item->id) }}" method="post"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"><i
-                                            class="fas fa-trash"></i></button>
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -189,7 +218,8 @@
                 rows.sort((a, b) => {
                     const dateA = new Date(a.cells[3].innerText); // Kolom tanggal ada di indeks ke-3
                     const dateB = new Date(b.cells[3].innerText);
-                    return order === 'asc' ? dateA - dateB : dateB - dateA; // Urutkan berdasarkan urutan yang diberikan
+                    return order === 'asc' ? dateA - dateB : dateB -
+                    dateA; // Urutkan berdasarkan urutan yang diberikan
                 });
 
                 // Menyusun ulang baris di tabel

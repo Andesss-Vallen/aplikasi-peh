@@ -52,6 +52,18 @@ class JadwalController extends Controller
         $j->id_paket = $request['id_paket'];
         $j->save();
 
+        if (is_array($request->id_tfoto)) {
+            $j->timFoto()->sync($request->id_tfoto);
+        } elseif (!empty($request->id_tfoto)) {
+            $j->timFoto()->sync([$request->id_tfoto]);
+        }
+
+        // Cek apakah tim video memiliki banyak data atau hanya satu
+        if (is_array($request->id_tvideo)) {
+            $j->timVideo()->sync($request->id_tvideo);
+        } elseif (!empty($request->id_tvideo)) {
+            $j->timVideo()->sync([$request->id_tvideo]);
+        }
         return redirect('jadwal');
     }
 
@@ -81,7 +93,7 @@ class JadwalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $j = Jadwal::find($id);
+        $j = Jadwal::findOrFail($id);
         $j->client = $request['client'];
         $j->brand = $request['brand'];
         $j->tanggal = $request['tanggal'];
@@ -90,13 +102,25 @@ class JadwalController extends Controller
         $j->keterangan = $request['keterangan'];
         $j->pakaian = $request['pakaian'];
         $j->id_cs = $request['id_cs'];
-        $j->id_tfoto = $request['id_tfoto'];
-        $j->id_tvideo = $request['id_tvideo'];
         $j->id_paket = $request['id_paket'];
         $j->save();
 
+        if (is_array($request->id_tfoto)) {
+            $j->timFoto()->sync($request->id_tfoto);
+        } elseif (!empty($request->id_tfoto)) {
+            $j->timFoto()->sync([$request->id_tfoto]);
+        }
+
+        // Cek apakah tim video memiliki banyak data atau hanya satu
+        if (is_array($request->id_tvideo)) {
+            $j->timVideo()->sync($request->id_tvideo);
+        } elseif (!empty($request->id_tvideo)) {
+            $j->timVideo()->sync([$request->id_tvideo]);
+        }
+
         return redirect('jadwal');
     }
+
 
     /**
      * Remove the specified resource from storage.
