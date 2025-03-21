@@ -15,6 +15,6 @@ class TimVideo extends Model
 
     public function jadwal()
     {
-        return $this->hasMany(Jadwal::class, 'id_tvideo');
+        return $this->belongsToMany(Jadwal::class, 'jadwal_timvideo', 'jadwal_id', 'timvideo_id');
     }
 }
