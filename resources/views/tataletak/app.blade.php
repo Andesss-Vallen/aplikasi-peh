@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
         /* Flexbox untuk tata letak penuh halaman */
-        html, body {
-            height: 100%; /* Pastikan tinggi halaman penuh */
+        html,
+        body {
+            height: 100%;
+            /* Pastikan tinggi halaman penuh */
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -16,7 +22,8 @@
 
         /* Area utama untuk konten */
         .content-area {
-            flex: 1; /* Isi sisa ruang halaman sebelum footer */
+            flex: 1;
+            /* Isi sisa ruang halaman sebelum footer */
         }
 
         /* Footer tetap di bawah */
@@ -29,6 +36,7 @@
         }
     </style>
 </head>
+
 <body>
     @include('tataletak.navbar') <!-- Menyertakan navbar -->
 
@@ -41,4 +49,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

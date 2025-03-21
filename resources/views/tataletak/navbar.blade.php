@@ -110,7 +110,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="logo">
-                <a href="/info">
+                <a href="/utama">
                     <img src="{{ asset('img/logo.png') }}" alt="Logo">
                 </a>
             </div>
