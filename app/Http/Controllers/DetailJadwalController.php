@@ -58,7 +58,8 @@ class DetailJadwalController extends Controller
     public function edit(string $id)
     {
         $dj = DetailJadwal::find($id);
-        return view('detailjadwal.edit', compact('dj'));
+        $jadwal = Jadwal::all();
+        return view('detailjadwal.edit', compact('dj', 'jadwal'));
     }
 
     /**
