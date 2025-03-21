@@ -126,8 +126,22 @@
                     </td>
                     <td>{{ $item->album }}</td>
                     <td>{{ $item->medsos }}</td>
-                    <td>{{ $item->jadwal->timFoto->nama }}</td>
-                    <td>{{ $item->jadwal->timVideo->nama }}</td>
+                    <td>
+                        @if ($item->jadwal->timFoto->count() > 0)
+                            {{ implode(', ', $item->jadwal->timFoto->pluck('nama')->toArray()) }}
+                        @else
+                            <span class="text-muted">-</span>
+                        @endif
+                    </td>
+
+                    <!-- Menampilkan Tim Video (Many-to-Many) -->
+                    <td>
+                        @if ($item->jadwal->timVideo->count() > 0)
+                            {{ implode(', ', $item->jadwal->timVideo->pluck('nama')->toArray()) }}
+                        @else
+                            <span class="text-muted">-</span>
+                        @endif
+                    </td>
                     <td>{{ $item->jadwal->pakaian }}</td>
                     <td>{{ $item->jam_ready }}</td>
                     <td>{{ $item->keterangan }}</td>
