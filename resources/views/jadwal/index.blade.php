@@ -161,12 +161,8 @@
 
                             <!-- Menampilkan Tim Foto (Many-to-Many) -->
                             <td>
-                                @if ($item->timFoto->isNotEmpty())
-                                    <ul>
-                                        @foreach ($item->timFoto as $timfoto)
-                                            <li>{{ $timfoto->nama }}</li>
-                                        @endforeach
-                                    </ul>
+                                @if ($item->timFoto->count() > 0)
+                                    {{ implode(', ', $item->timFoto->pluck('nama')->toArray()) }}
                                 @else
                                     <span class="text-muted">-</span>
                                 @endif
@@ -174,16 +170,12 @@
 
                             <!-- Menampilkan Tim Video (Many-to-Many) -->
                             <td>
-                                @if ($item->timVideo->isNotEmpty())
-                                    <ul>
-                                        @foreach ($item->timVideo as $timvideo)
-                                            <li>{{ $timvideo->nama }}</li>
-                                        @endforeach
-                                    </ul>
+                                @if ($item->timVideo->count() > 0)
+                                    {{ implode(', ', $item->timVideo->pluck('nama')->toArray()) }}
                                 @else
                                     <span class="text-muted">-</span>
                                 @endif
-                            </td>
+                            </td>
 
                             <td>{{ optional($item->paket)->nama ?? '-' }}</td>
                             <td class="action">
