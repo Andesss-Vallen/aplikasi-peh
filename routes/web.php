@@ -9,7 +9,6 @@ use App\Http\Controllers\TimFotoController;
 use App\Http\Controllers\TimVideoController;
 use Illuminate\Support\Facades\Route;
 use App\Models\DetailJadwal;
-use App\Models\Jadwal;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,19 +56,9 @@ Route::resource('paket', PaketController::class);
 Route::resource('timfoto', TimFotoController::class);
 Route::resource('timvideo', TimVideoController::class);
 
-Route::get('/', function () {
-    $dj = DetailJadwal::all();
-    return view('utama/index', compact('dj'));
-})->middleware('auth');
-
-Route::get('/show', function () {
-    $j = Jadwal::all();
-    return view('utama/show', compact('j'));
-});
-
-Route::get('/detail', function () {
-    $dj = DetailJadwal::all();
-    return view('utama/detail', compact('dj'));
+Route::get('/utama', function () {
+    $dj = DetailJadwal::all(); // Ambil semua data dari tabel info_jadwal
+    return view('utama/index', compact('dj')); // Kirim ke Blade
 });
 
 require __DIR__ . '/auth.php';

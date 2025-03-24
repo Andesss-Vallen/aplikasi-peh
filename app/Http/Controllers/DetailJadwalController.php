@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailJadwal;
 use App\Models\Jadwal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DetailJadwalController extends Controller
 {
@@ -86,24 +87,47 @@ class DetailJadwalController extends Controller
     public function update(Request $request, string $id)
     {
         $dj = DetailJadwal::find($id);
-        $dj->album = $request['album'];
-        $dj->medsos = $request['medsos'];
-        $dj->jam_ready = $request['jam_ready'];
-        $dj->rundown = $request['rundown'];
-        $dj->keterangan = $request['keterangan'];
-        $dj->id_jadwal = $request['id_jadwal'];
+        $dj->album = $request->album;
+        $dj->medsos = $request->medsos;
+        $dj->jam_ready = $request->jam_ready;
+        $dj->rundown_text = $request->rundown_text;
+        $dj->keterangan = $request->keterangan;
+        $dj->id_jadwal = $request->id_jadwal;
+
+        // Cek apakah ada file PDF baru yang diunggah
+        if ($request->hasFile('rundown_pdf')) {
+            // Hapus file lama jika ada
+            if ($dj->rundown_pdf) {
+                Storage::disk('public')->delete($dj->rundown_pdf);
+            }
+
+            // Simpan file baru
+            $rundown_pdf = $request->file('rundown_pdf')->store('rundown', 'public');
+            $dj->rundown_pdf = $rundown_pdf;
+        }
+
         $dj->save();
 
-        return redirect('detailjadwal');
+        return redirect()->route('detailjadwal.index')->with('success', 'Data berhasil diperbarui!');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        $dj = DetailJadwal::find($id);
+        $dj = DetailJadwal::findOrFail($id);
+
+        // Hapus file PDF jika ada
+        if ($dj->rundown_pdf) {
+            Storage::disk('public')->delete($dj->rundown_pdf);
+        }
+
+        // Hapus data dari database
         $dj->delete();
-        return redirect('detailjadwal');
+
+        return redirect()->route('detailjadwal.index')->with('success', 'Data dan file PDF berhasil dihapus!');
     }
 }

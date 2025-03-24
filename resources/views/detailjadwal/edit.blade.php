@@ -11,7 +11,7 @@
 </style>
 <div class="card">
     <h2>Edit Data Detail Jadwal</h2>
-    <form action="{{ route('detailjadwal.update', $dj->id) }}" method="post">
+    <form action="{{ route('detailjadwal.update', $dj->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -35,8 +35,8 @@
 
         @if (!empty($info->rundown_pdf))
         <p>File saat ini: <a href="{{ asset('storage/' . $info->rundown_pdf) }}" target="_blank">Lihat PDF</a>
-        
         </p>
+        @endif
 
         <div class="form-group">
             <label for="album">Album</label>

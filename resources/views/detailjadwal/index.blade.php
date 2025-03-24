@@ -128,33 +128,34 @@
                     <td>{{ $item->medsos }}</td>
                     <td>
                         @if ($item->jadwal->timFoto->count() > 0)
-                            {{ implode(', ', $item->jadwal->timFoto->pluck('nama')->toArray()) }}
+                        {{ implode(', ', $item->jadwal->timFoto->pluck('nama')->toArray()) }}
                         @else
-                            <span class="text-muted">-</span>
+                        <span class="text-muted">-</span>
                         @endif
                     </td>
 
                     <!-- Menampilkan Tim Video (Many-to-Many) -->
                     <td>
                         @if ($item->jadwal->timVideo->count() > 0)
-                            {{ implode(', ', $item->jadwal->timVideo->pluck('nama')->toArray()) }}
+                        {{ implode(', ', $item->jadwal->timVideo->pluck('nama')->toArray()) }}
                         @else
-                            <span class="text-muted">-</span>
+                        <span class="text-muted">-</span>
                         @endif
-                    </td>
+                                   
+                    </td>
                     <td>{{ $item->jadwal->pakaian }}</td>
                     <td>{{ $item->jam_ready }}</td>
                     <td>{{ $item->keterangan }}</td>
                     <td class="action">
                         <a href="{{ route('detailjadwal.edit', $item->id) }}" class="btn btn-warning btn-sm"><i
                                 class="fas fa-edit"></i></a>
-                        <form action="{{ route('detailjadwal.destroy', $item->id) }}" method="post"
-                            style="display:inline;">
+                        <form action="{{ route('detailjadwal.destroy', $item->id) }}" method="post" style="display:inline;"
+                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini beserta file PDF-nya?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm"><i
-                                    class="fas fa-trash"></i></button>
+                            <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                         </form>
+
                     </td>
                 </tr>
                 @endforeach

@@ -284,7 +284,7 @@
                     let selectedMonth = this.getAttribute("data-month");
                     let selectedYear = this.getAttribute("data-year");
 
-                    window.location.href = `/show?date=${selectedDate}&month=${selectedMonth}&year=${selectedYear}`;
+                    window.location.href = `/jadwal?date=${selectedDate}&month=${selectedMonth}&year=${selectedYear}`;
                 });
             });
         };
